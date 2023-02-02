@@ -15,6 +15,7 @@ session_destroy();
 
 //処理後、index.phpへリダイレクト
 header("Location: login.php");
+
 exit();
 
 ?>
