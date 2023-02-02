@@ -62,11 +62,8 @@ $status = $stmt->execute();
 if($status==false){
     sql_error($stmt);
 }
-
 //4. 抽出データ数を取得
-
 $val = $stmt->fetch(); 
-
 if($val['id'] != "") {
   //Login成功時
   $_SESSION['chk_ssid']  = session_id();//SESSION変数にidを保存
@@ -77,14 +74,7 @@ if($val['id'] != "") {
 }else{
   redirect("logout.php");
 }
-      // if($val['kanri_flg']){
-        
-      // }else($val['kanri_flg']){
-          // redirect('select_normal.php');            
-      // };    
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="ja">
