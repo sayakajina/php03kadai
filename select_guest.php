@@ -4,7 +4,7 @@ require_once('funcs.php');
 $pdo = db_conn();
 
 //２．SQL文を用意(データ取得：SELECT)
-$stmt = $pdo->prepare("SELECT * FROM gs_user_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_an_table");
 
 //3. 実行
 $status = $stmt->execute();
@@ -20,13 +20,17 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+    $url = 'https://www.instagram.com/' .$result['userid'];
     $view .= "<p>";
-    $view .='<a href="detail_user.php?id='.$result['id'].'">';
-    $view .= $result['name'].' | '.$result['lid'].' | '.$result['lpw'].' | '.$result['kanri_flg'].' | '.$result['life_flg'];
+    $view .='<a href="detail_guest.php?id='.$result['id'].'">';
+    $view .= $result['indate'].' | ';
     $view .='</a>';
-    $view .='<a href="delete_user.php?id='.$result['id'].'">';
-    $view .= ' [削除]';
-    $view .= '</a>';
+    $view .='<a href="'.$url.'">';
+    $view .= $result['userid'].' | ';
+    $view .='</a>';
+    $view .='<a href="detail_guest.php?id='.$result['id'].'">';
+    $view .=$result['username'].' | '.$result['email'].' | '.$result['entry'];
+    $view .='</a>';
     $view .= "</p>";
   };
 
@@ -50,10 +54,8 @@ if($status==false) {
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="logout.php">ログアウト</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="index.php">申込</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="index_user.php">ユーザーデータ登録</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="login.php">ログイン</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="index_guest.php">申込</a></div>
     </div>
   </nav>
 </header>
