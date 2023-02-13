@@ -60,6 +60,10 @@ if($val['id'] != "") {
       <?php else :?>
   
       <?php endif; ?>
+      <div class="navbar-header"><a class="navbar-brand" href="./ajax/ajax.html">Ajax</a></div>
+      <div class="navbar-header"><a class="navbar-brand" href="./ajax_input">Ajax_input</a></div>
+      <div class="navbar-header"><a class="navbar-brand" href="fileupload.html">写真アップロード</a></div>
+      <div class="navbar-header"><a class="navbar-brand" href="./fileupload_sample">fileupload_sample</a></div>
     </div>
   </nav>
 </header>
@@ -70,7 +74,7 @@ if($val['id'] != "") {
   <div class="jumbotron">
    <fieldset>
     <legend>広告案件申込フォーム</legend>
-     <label>ユーザーID<input type="text" name="userid"></label><br>
+     <label>ユーザーID<input type="text" name="instaid"></label><br>
      <label>ユーザーネーム<input type="text" name="username"></label><br>
      <label>Email：<input type="text" name="email"></label><br>
      <label>申し込みプラン<select name="entry">

@@ -40,11 +40,13 @@ $val = $stmt->fetch();         //1レコードだけ取得する方法
     $_SESSION['name']      = $val['name'];//SESSION変数にnameを保存
     $_SESSION['lid']      = $val['lid'];//SESSION変数にnameを保存
     $_SESSION['lpw']      = $val['lpw'];//SESSION変数にnameを保存
+    $_SESSION['user_id'] = $val['id'];
     redirect("select.php");   
     }else{
     //Login失敗時(Logout経由)
     redirect('logout.php');
     };
 exit();
+?>
 
 

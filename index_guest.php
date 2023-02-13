@@ -24,7 +24,7 @@
   <div class="jumbotron">
    <fieldset>
     <legend>広告案件申込フォーム</legend>
-     <label>ユーザーID<input type="text" name="userid"></label><br>
+     <label>ユーザーID<input type="text" name="instaid"></label><br>
      <label>ユーザーネーム<input type="text" name="username"></label><br>
      <label>Email：<input type="text" name="email"></label><br>
      <label>申し込みプラン<select name="entry">

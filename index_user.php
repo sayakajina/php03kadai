@@ -29,13 +29,9 @@
      <label>名前：<input type="text" name="name"></label><br>
      <label>ログインID：<input type="text" name="lid"></label><br>
      <label>パスワード：<input type="text" name="lpw"></label><br>
-     <label>役職<select name="kanri_flg">
-      <option value="0">管理者</option>
-      <option value="1">スーパー管理者</option>
-     </select></label><br>
-     <label>ステータス<select name="life_flg">
-      <option value="0">退社</option>
-      <option value="1">入社</option>
+     <label>管理フラグ
+      一般<input type="radio" name="kanri_flg" value="0">　
+      管理者<input type="radio" name="kanri_flg" value="1">
      </select></label><br>
      <input type="submit" value="送信">
     </fieldset>

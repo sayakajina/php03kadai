@@ -7,7 +7,7 @@ require_once('funcs.php');
 $pdo = db_conn();
 
 //２．SQL文を用意(データ取得：SELECT)
-$stmt = $pdo->prepare("SELECT * FROM gs_an_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_an_table INNER JOIN gs_user_table ON gs_an_table.user_id = gs_user_table.id");
 
 //3. 実行
 $status = $stmt->execute();
@@ -23,16 +23,16 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $url = 'https://www.instagram.com/' .$result['userid'];
+    $url = 'https://www.instagram.com/' .$result['instaid'];
     $view .= "<p>";
     $view .='<a href="detail.php?id='.$result['id'].'">';
     $view .= $result['indate'].' | ';
     $view .='</a>';
     $view .='<a href="'.$url.'">';
-    $view .= $result['userid'].' | ';
+    $view .= $result['instaid'].' | ';
     $view .='</a>';
     $view .='<a href="detail.php?id='.$result['id'].'">';
-    $view .=$result['username'].' | '.$result['email'].' | '.$result['entry'];
+    $view .=$result['username'].' | '.$result['email'].' | '.$result['entry'].' | '.$result['name'];
     $view .='</a>';
     $view .='<a href="delete.php?id='.$result['id'].'">';
     $view .= ' [削除]';

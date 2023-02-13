@@ -1,4 +1,7 @@
 <?php
+session_start();
+loginCheck();
+
 //select.phpから処理を持ってくる
 //1.対象のIDを取得
 $id = $_GET['id'];

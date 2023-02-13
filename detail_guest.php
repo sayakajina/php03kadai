@@ -53,7 +53,7 @@ if ($status == false){
   <div class="jumbotron">
    <fieldset>
     <legend>データ更新</legend>
-     <label>ユーザーID：<input type="text" name="userid" value="<?= $result['userid']?>"></label><br>
+     <label>ユーザーID：<input type="text" name="instaid" value="<?= $result['instaid']?>"></label><br>
      <label>ユーザネーム：<input type="text" name="username" value="<?= $result['username']?>"></label><br>
      <label>Email：<input type="text" name="email" value="<?= $result['email']?>"></label><br>
      <label>申し込みプラン<select name="entry">

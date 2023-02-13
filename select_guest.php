@@ -20,13 +20,13 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $url = 'https://www.instagram.com/' .$result['userid'];
+    $url = 'https://www.instagram.com/' .$result['instaid'];
     $view .= "<p>";
     $view .='<a href="detail_guest.php?id='.$result['id'].'">';
     $view .= $result['indate'].' | ';
     $view .='</a>';
     $view .='<a href="'.$url.'">';
-    $view .= $result['userid'].' | ';
+    $view .= $result['instaid'].' | ';
     $view .='</a>';
     $view .='<a href="detail_guest.php?id='.$result['id'].'">';
     $view .=$result['username'].' | '.$result['email'].' | '.$result['entry'];

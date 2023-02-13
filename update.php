@@ -1,7 +1,7 @@
 <?php
 //insert.phpの処理を持ってくる
 //1. POSTデータ取得
-$userid = $_POST['userid'];
+$instaid = $_POST['instaid'];
 $username = $_POST['username'];
 $email = $_POST['email'];
 $entry = $_POST['entry'];
@@ -15,10 +15,10 @@ $pdo = db_conn();
 
 //３．データ更新SQL作成（UPDATE テーブル名 SET 更新対象1=:更新データ ,更新対象2=:更新データ2,... WHERE id = 対象ID;）
 $stmt = $pdo->prepare(
-    "UPDATE gs_an_table SET userid = :userid, username = :username, email = :email, entry = :entry, indate = sysdate() WHERE id = :id;");
+    "UPDATE gs_an_table SET instaid = :instaid, username = :username, email = :email, entry = :entry, indate = sysdate() WHERE id = :id;");
   
   // 4. バインド変数を用意
-  $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+  $stmt->bindValue(':instaid', $instaid, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
   $stmt->bindValue(':username', $username, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
   $stmt->bindValue(':email', $email, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
   $stmt->bindValue(':entry', $entry, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)

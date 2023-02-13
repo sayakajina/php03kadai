@@ -1,7 +1,10 @@
 <?php
+session_start();
+require_once('funcs.php');
+loginCheck();
+
 //selsect.phpから処理を持ってくる
 //1.外部ファイル読み込みしてDB接続(funcs.phpを呼び出して)
-require_once('funcs.php');
 $pdo = db_conn();
 
 //2.対象のIDを取得
@@ -19,11 +22,9 @@ if ($status == false){
     $error = $stmt->errorInfo();
     exit("ErrorQuery:".$error[2]);
 }else{
-    $result = $stmt->fetch();//ここを追記！！
+    $row = $stmt->fetch();//ここを追記！！
     
 };
-
-
 ?>
 
 <!-- 以下はindex.phpのHTMLをまるっと持ってくる -->
@@ -38,6 +39,7 @@ if ($status == false){
 
 <!-- Head[Start] -->
 <header>
+    <?php echo $_SESSION["name"]; ?>さん　
   <nav class="navbar navbar-default">
     <div class="container-fluid">
     <div class="navbar-header"><a class="navbar-brand" href="index.php">申込</a></div>
@@ -54,19 +56,29 @@ if ($status == false){
   <div class="jumbotron">
    <fieldset>
     <legend>データ更新</legend>
-     <label>名前：<input type="text" name="name" value="<?= $result['name']?>"></label><br>
-     <label>ログインID：<input type="text" name="lid" value="<?= $result['lid']?>"></label><br>
-     <label>パスワード：<input type="text" name="lpw" value="<?= $result['lpw']?>"></label><br>
-     <label>役職<select name="kanri_flg">
-      <option value="0">管理者</option>
-      <option value="1">スーパー管理者</option>
-     </select></label><br>
-     <label>ステータス<select name="life_flg">
-      <option value="0">退社</option>
-      <option value="1">入社</option>
-     </select></label><br>
-     <input type="hidden" name="id" value="<?= $result['id'] ?>">
-     <input type="submit" value="送信">
+     <label>名前：<input type="text" name="name" value="<?= $row['name']?>"></label><br>
+     <label>ログインID：<input type="text" name="lid" value="<?= $row['lid']?>"></label><br>
+     <label>Login PW<input type="text" name="lpw" placeholder="変更あるときだけ入力"></label><br>
+     <label>管理FLG：
+          <?php if($row["kanri_flg"]=="0"){ ?>
+              一般<input type="radio" name="kanri_flg" value="0" checked="checked">　
+              管理者<input type="radio" name="kanri_flg" value="1">
+          <?php }else{ ?>
+              一般<input type="radio" name="kanri_flg" value="0">　
+              管理者<input type="radio" name="kanri_flg" value="1" checked="checked">
+          <?php } ?>
+      </label><br>
+      <label>退会FLG：
+        <?php if($row["life_flg"]=="0"){ ?>
+                  利用中<input type="radio" name="life_flg" value="0" checked="checked">　
+                  退会<input type="radio" name="life_flg" value="1">
+              <?php }else{ ?>
+                  利用中<input type="radio" name="life_flg" value="0">　
+                  退会<input type="radio" name="life_flg" value="1" checked="checked">
+              <?php } ?>
+      </label><br>
+     <input type="hidden" name="id" value="<?= $row['id'] ?>">
+     <input type="submit" value="更新">
     </fieldset>
   </div>
 </form>

@@ -1,6 +1,9 @@
 <?php
+session_start();
 //1.  DB接続します
 require_once('funcs.php');
+loginCheck();
+
 $pdo = db_conn();
 
 //２．SQL文を用意(データ取得：SELECT)
@@ -15,14 +18,13 @@ if($status==false) {
     //execute（SQL実行時にエラーがある場合）
   $error = $stmt->errorInfo();
   exit("ErrorQuery:".$error[2]);
-
 }else{
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
     $view .= "<p>";
     $view .='<a href="detail_user.php?id='.$result['id'].'">';
-    $view .= $result['name'].' | '.$result['lid'].' | '.$result['lpw'].' | '.$result['kanri_flg'].' | '.$result['life_flg'];
+    $view .= $result['name'].' | '.$result['lid'];
     $view .='</a>';
     $view .='<a href="delete_user.php?id='.$result['id'].'">';
     $view .= ' [削除]';
@@ -48,6 +50,7 @@ if($status==false) {
 <body id="main">
 <!-- Head[Start] -->
 <header>
+  <?php echo $_SESSION["name"]; ?>さん
   <nav class="navbar navbar-default">
     <div class="container-fluid">
     <div class="navbar-header"><a class="navbar-brand" href="logout.php">ログアウト</a></div>
